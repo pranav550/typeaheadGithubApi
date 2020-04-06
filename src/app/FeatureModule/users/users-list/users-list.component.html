@@ -1,0 +1,8 @@
+<div class="container">
+    <input [(ngModel)]="selected"
+           [typeahead]="users"
+           typeaheadWaitMs="1000"
+           (ngModelChange)="changeValue(selected)"
+           class="form-control my-4" placeholder="Search">
+    
+        </div>

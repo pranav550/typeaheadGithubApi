@@ -7,16 +7,18 @@ import {Constant} from "../../Utils/constant";
   providedIn: 'root'
 })
 export class MockService {
-
+  
+ 
   constructor(private http:HttpClient) { }
+  
 
-  getRepositoryService():Observable<any>{
-     return this.http.get<any>(Constant.url)
+  getRepositoryService(apiurl: string,data: string):Observable<any>{
+     return this.http.get<any>(Constant.url+ apiurl+ data)
      .pipe(catchError(this.handleError))
   }
 
-  getUserService():Observable<any>{
-    return this.http.get<any>(Constant.userUrl)
+  getUserService(apiurl: string,data: string):Observable<any>{
+    return this.http.get<any>(Constant.url+ apiurl + data)
     .pipe(catchError(this.handleError))
  }
 

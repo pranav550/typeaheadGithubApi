@@ -7,32 +7,33 @@ import { MockService } from './../../../SharedModule/services/mock.service'
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
-  users:string[];
+  users: string[];
   selected: string;
-  constructor(private service:MockService) { }
+  selectedValue: string;
+  apiUrl = "users?q=";
+  constructor(private service: MockService) { }
 
   ngOnInit(): void {
+    
+   
+    
+  }
+
+  changeValue(selected) {
+    console.log(selected)
+    this.selectedValue = selected
     this.userList()
   }
 
-  changeValue(selected){
-    console.log(selected)
-  }
-
-  userList(){
-    this.users=[];
-    this.service.getUserService().subscribe(data=>{
-      console.log(data)
-    //  console.log(data.items)
-      data.items.map(result=>{
-      //  console.log(result.name)
-        this.users.push(result.login.toLowerCase())
+  userList() {
+    this.users = [];
+    this.service.getUserService(this.apiUrl,this.selectedValue).subscribe(data => {
+      console.log(this.selectedValue)
+      data.items.map(result => {
+        this.users.push(result.login)
       })
-    //  console.log(this.users)
 
-      })
-      
-   
+    })
   }
 
 }

@@ -1,3 +1,4 @@
+import { Mock } from './../../../SharedModule/models/mock';
 import { MockService } from './../../../SharedModule/services/mock.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -27,10 +28,10 @@ export class RepositoryListComponent implements OnInit {
 
   repositoryList() {
     this.names = [];
-    this.service.getRepositoryService(this.apiUrl,this.selectedValue).subscribe(data => {
-      console.log(data)
+    this.service.getRepositoryService(this.apiUrl,this.selectedValue).subscribe((data:Mock) => {
+      console.log(data.items)
 
-      data.items.map((result) => {
+      data.items.map((result: Mock) => {
 
         this.names.push(result.name)
       })

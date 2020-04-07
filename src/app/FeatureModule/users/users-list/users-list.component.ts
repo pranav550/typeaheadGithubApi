@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MockService } from './../../../SharedModule/services/mock.service'
-
+import { User } from './../../../SharedModule/models/user';
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
@@ -14,9 +14,6 @@ export class UsersListComponent implements OnInit {
   constructor(private service: MockService) { }
 
   ngOnInit(): void {
-    
-   
-    
   }
 
   changeValue(selected) {
@@ -27,9 +24,9 @@ export class UsersListComponent implements OnInit {
 
   userList() {
     this.users = [];
-    this.service.getUserService(this.apiUrl,this.selectedValue).subscribe(data => {
+    this.service.getUserService(this.apiUrl,this.selectedValue).subscribe((data:User) => {
       console.log(this.selectedValue)
-      data.items.map(result => {
+      data.items.map((result:User) => {
         this.users.push(result.login)
       })
 
